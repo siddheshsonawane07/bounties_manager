@@ -1,9 +1,10 @@
-import { MainComponent } from "./Components/Main/Main";
 import React, { useEffect, useState, useRef } from "react";
 import Web3Modal from "web3modal";
 import { providers, Contract } from "ethers";
 import Bounties from "./Components/Main/Bounty";
-import { CardComponent } from "./Components/Card/Card";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navbar } from "react-bootstrap";
+import CreateBountyComponent from "./Components/CreateBounty/CreateBounty";
 
 const App = () => {
   console.log(process.env.REACT_APP_WALLET_ADD);
@@ -377,7 +378,32 @@ const App = () => {
     }
   };
 
-  return <Bounties contract={contract} account={currentAccount} />;
+  return (
+    <>
+      {/* <NavComponent account={currentAccount} /> */}
+      <Router>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<Bounties contract={contract} account={currentAccount} />}
+          />
+        </Routes>
+        <Routes>
+          <Route
+            exact
+            path="/createBounty"
+            element={
+              <CreateBountyComponent
+                contract={contract}
+                account={currentAccount}
+              />
+            }
+          />
+        </Routes>
+      </Router>
+    </>
+  );
 };
 
 export default App;

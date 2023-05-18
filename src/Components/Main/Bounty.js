@@ -6,6 +6,8 @@ import Form from "react-bootstrap/Form";
 import "../Submission/Submission.css";
 import { ethers } from "ethers";
 import { Card } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./Bounty.css";
 
 const SubmissionComponent = ({
   _title,
@@ -111,8 +113,9 @@ const CardComponent = ({
 };
 
 const Bounties = ({ contract, account }) => {
-  const [desc, setDesc] = useState("asda");
   const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+
   const [description, setDescription] = useState("");
   const [detail, setDetail] = useState("");
   const [homepage, setHomepage] = useState(true);
@@ -144,18 +147,11 @@ const Bounties = ({ contract, account }) => {
 
     // ... Do something ...
   };
-  const handleRewardChange = (e) => {
-    setReward(e.target.value);
-  };
+
   const handleGithubLinkChange = (event) => {
     setGithubLink(event.target.value);
   };
-  const handleDeadChange = (e) => {
-    const deadlineInput = e.target.value;
-    // Convert date and time to epoch time
-    const epochTime = new Date(deadlineInput).getTime() / 1000;
-    setDeadLine(epochTime);
-  };
+
   const handleBountyIndex = (e) => {
     setBountyIndex(e.target.value);
   };
@@ -165,6 +161,7 @@ const Bounties = ({ contract, account }) => {
   const handleSubmissionIndex = (e) => {
     setSubmissionIndex(e.target.value);
   };
+
   const handlesetTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -173,6 +170,15 @@ const Bounties = ({ contract, account }) => {
   };
   const handlesetDetail = (e) => {
     setDetail(e.target.value);
+  };
+  const handleRewardChange = (e) => {
+    setReward(e.target.value);
+  };
+  const handleDeadChange = (e) => {
+    const deadlineInput = e.target.value;
+    // Convert date and time to epoch time
+    const epochTime = new Date(deadlineInput).getTime() / 1000;
+    setDeadLine(epochTime);
   };
 
   //getnumBOunties
@@ -188,6 +194,7 @@ const Bounties = ({ contract, account }) => {
     }
     getNumBounties();
   });
+
   //getBountyList
   useEffect(() => {
     async function getNumBounties() {
@@ -223,20 +230,6 @@ const Bounties = ({ contract, account }) => {
     setFilteredCards(filtered);
   }, [cards]);
 
-  //button function to create BOunty
-  const handleCreateSubmit = async (e) => {
-    e.preventDefault();
-    const rewardWei = ethers.utils.parseUnits(reward, "ether");
-    console.log(desc);
-    const createSubmit = await contract.createBounty(
-      desc,
-      rewardWei,
-      deadLine,
-      { value: rewardWei }
-    );
-    await createSubmit.wait();
-    console.log(desc, reward, deadLine);
-  };
   const handleCreateSubmission = async (e) => {
     e.preventDefault();
     const createSubmit = await contract.bountySubmission(
@@ -249,6 +242,22 @@ const Bounties = ({ contract, account }) => {
       "submission ": Submission,
     });
   };
+
+  //button function to create BOunty
+  // const handleCreateSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const rewardWei = ethers.utils.parseUnits(reward, "ether");
+  //   console.log(desc);
+  //   const createSubmit = await contract.createBounty(
+  //     desc,
+  //     rewardWei,
+  //     deadLine,
+  //     { value: rewardWei }
+  //   );
+  //   await createSubmit.wait();
+  //   console.log(desc, reward, deadLine);
+  // };
+
   const handleSelectWinner = async (e) => {
     e.preventDefault();
     const createSubmit = await contract.selectBountyWinner(BountyIndex, [
@@ -262,11 +271,15 @@ const Bounties = ({ contract, account }) => {
       SubmissionIndex
     );
   };
+
   return (
     <div>
       <div className="navbar">
         <a className="navbar-item" href="#">
           Welcome to Bounties
+        </a>
+        <a className="navbar-item" href="/createBounty">
+          Create a Bounty
         </a>
         <span>
           <button
@@ -318,23 +331,8 @@ const Bounties = ({ contract, account }) => {
                 );
               })}
             </Row>
-            {/* 
-            <Row>
-                  <h2>Available Bounties :</h2>
-                  <div className="card-container">
-                    {cards.map((card) => (
-                      <Card
-                        key={card._desc}
-                        _reward={card._reward}
-                        _deadLine={card._deadLine}
-                        _desc={card._desc}
-                        _owner={card._owner}
-                      />
-                    ))}
-                  </div>
-                </Row> */}
 
-            <Row>
+            {/* <Row>
               <Form onSubmit={handleCreateSubmit}>
                 <h2>create bounty : </h2>
                 <Form.Group className="mb-3">
@@ -376,7 +374,8 @@ const Bounties = ({ contract, account }) => {
                   Submit
                 </Button>
               </Form>
-            </Row>
+            </Row> */}
+
             <br />
             <h2>create Submission : </h2>
             <Row>
