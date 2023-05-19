@@ -8,6 +8,7 @@ import { ethers } from "ethers";
 import { Card } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./Bounty.css";
+import CardComponent from "../Card/CardComponent";
 
 const SubmissionComponent = ({
   _title,
@@ -80,37 +81,37 @@ const SubmissionComponent = ({
   );
 };
 
-const CardComponent = ({
-  _reward,
-  _deadLine,
-  _desc,
-  _title,
-  _owner,
-  handleCardClick,
-  _index,
-}) => {
-  return (
-    <Card
-      onClick={() =>
-        handleCardClick({ _reward, _deadLine, _desc, _owner, _index })
-      }
-    >
-      <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" />
-      <Card.Body>
-        <Card.Title>{_title.split(" / ")[0]}</Card.Title>
-        <Card.Text>{_desc.split(" / ")[1]}</Card.Text>
-        <Card.Text>
-          <b>Reward:</b>
-          {_reward}
-        </Card.Text>
-        <Card.Text>
-          <b>Deadline:</b>
-          {_deadLine}
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  );
-};
+// const CardComponent = ({
+//   _reward,
+//   _deadLine,
+//   _desc,
+//   _title,
+//   _owner,
+//   handleCardClick,
+//   _index,
+// }) => {
+//   return (
+//     <Card
+//       onClick={() =>
+//         handleCardClick({ _reward, _deadLine, _desc, _owner, _index })
+//       }
+//     >
+//       <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" />
+//       <Card.Body>
+//         <Card.Title>{_title.split(" / ")[0]}</Card.Title>
+//         <Card.Text>{_desc.split(" / ")[1]}</Card.Text>
+//         <Card.Text>
+//           <b>Reward:</b>
+//           {_reward}
+//         </Card.Text>
+//         <Card.Text>
+//           <b>Deadline:</b>
+//           {_deadLine}
+//         </Card.Text>
+//       </Card.Body>
+//     </Card>
+//   );
+// };
 
 const Bounties = ({ contract, account }) => {
   const [title, setTitle] = useState("");
@@ -134,20 +135,6 @@ const Bounties = ({ contract, account }) => {
   // const [balance, setBalance] = useState('');
   // const [numBounties, setNumBounties] = useState('');
 
-  const handleCardClick = (card) => {
-    console.log("Card clicked!", card);
-
-    setDescription(card._desc);
-    setReward(card._reward);
-    setDeadLine(card._deadLine);
-    setBountyIndex(card._index);
-    setTitle(card._desc);
-    setDetail(card._desc);
-    setHomepage(false);
-
-    // ... Do something ...
-  };
-
   const handleGithubLinkChange = (event) => {
     setGithubLink(event.target.value);
   };
@@ -158,77 +145,6 @@ const Bounties = ({ contract, account }) => {
   const handleSubmission = (e) => {
     setSubmission(e.target.value);
   };
-  const handleSubmissionIndex = (e) => {
-    setSubmissionIndex(e.target.value);
-  };
-
-  const handlesetTitle = (e) => {
-    setTitle(e.target.value);
-  };
-  const handlesetDescription = (e) => {
-    setDescription(e.target.value);
-  };
-  const handlesetDetail = (e) => {
-    setDetail(e.target.value);
-  };
-  const handleRewardChange = (e) => {
-    setReward(e.target.value);
-  };
-  const handleDeadChange = (e) => {
-    const deadlineInput = e.target.value;
-    // Convert date and time to epoch time
-    const epochTime = new Date(deadlineInput).getTime() / 1000;
-    setDeadLine(epochTime);
-  };
-
-  //getnumBOunties
-  useEffect(() => {
-    const str = title + " / " + description + " / " + detail;
-    setDesc(str);
-  }, [title, detail, description]);
-
-  useEffect(() => {
-    async function getNumBounties() {
-      const numBounty = await contract.getNumBounties();
-      SetnoOfBOunties(parseInt(numBounty));
-    }
-    getNumBounties();
-  });
-
-  //getBountyList
-  useEffect(() => {
-    async function getNumBounties() {
-      const numBounty = await contract.getNumBounties();
-      SetnoOfBOunties(parseInt(numBounty));
-      console.log("Available bounties : ", parseInt(numBounty));
-      const newCards = [];
-      for (let i = 0; i < parseInt(numBounty); i++) {
-        // Get the bounty detailss
-        const bounty = await contract.bountyList(i);
-        const val = 1000000000000000000;
-        console.log(
-          parseInt(bounty.reward) / val,
-          bounty.deadline * 1000,
-          bounty.description
-        );
-        console.log(cards);
-        const newCard = {
-          _reward: parseInt(bounty.reward) / val,
-          _deadLine: bounty.deadline * 1000,
-          _desc: bounty.description,
-          _owner: bounty.owner,
-        };
-        newCards.push(newCard);
-      }
-      setCards([...cards, ...newCards]);
-    }
-    getNumBounties();
-  }, [noOfBOunties]);
-
-  useEffect(() => {
-    const filtered = cards.filter((card) => card._owner === account);
-    setFilteredCards(filtered);
-  }, [cards]);
 
   const handleCreateSubmission = async (e) => {
     e.preventDefault();
@@ -242,21 +158,19 @@ const Bounties = ({ contract, account }) => {
       "submission ": Submission,
     });
   };
+  const handleCardClick = (card) => {
+    console.log("Card clicked!", card);
 
-  //button function to create BOunty
-  // const handleCreateSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const rewardWei = ethers.utils.parseUnits(reward, "ether");
-  //   console.log(desc);
-  //   const createSubmit = await contract.createBounty(
-  //     desc,
-  //     rewardWei,
-  //     deadLine,
-  //     { value: rewardWei }
-  //   );
-  //   await createSubmit.wait();
-  //   console.log(desc, reward, deadLine);
-  // };
+    setDescription(card._desc);
+    setReward(card._reward);
+    setDeadLine(card._deadLine);
+    setBountyIndex(card._index);
+    setTitle(card._desc);
+    setDetail(card._desc);
+    setHomepage(false);
+
+    // ... Do something ...
+  };
 
   const handleSelectWinner = async (e) => {
     e.preventDefault();
@@ -280,6 +194,9 @@ const Bounties = ({ contract, account }) => {
         </a>
         <a className="navbar-item" href="/createBounty">
           Create a Bounty
+        </a>
+        <a className="navbar-item" href="/allBounties">
+          All Bounties
         </a>
         <span>
           <button
@@ -311,71 +228,8 @@ const Bounties = ({ contract, account }) => {
                   </Col>
                 );
               })}
+              1
             </Row>
-            <h1 className="car-title">💰Available Bounties</h1>
-            <Row xs={1} md={2} lg={3} className="g-3 cont-card">
-              {cards.map((card) => {
-                return (
-                  <Col className="card-column">
-                    <CardComponent
-                      key={card._desc}
-                      _reward={card._reward}
-                      _deadLine={card._deadLine}
-                      _desc={card._desc}
-                      _owner={card._owner}
-                      _title={card._desc}
-                      _index={card._index}
-                      handleCardClick={handleCardClick}
-                    ></CardComponent>
-                  </Col>
-                );
-              })}
-            </Row>
-
-            {/* <Row>
-              <Form onSubmit={handleCreateSubmit}>
-                <h2>create bounty : </h2>
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="input"
-                    onChange={handlesetTitle}
-                    placeholder="Enter Title"
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="input"
-                    onChange={handlesetDescription}
-                    placeholder="Enter Description"
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="input"
-                    onChange={handlesetDetail}
-                    placeholder="Enter Details"
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" value="reward">
-                  <Form.Control
-                    type="text"
-                    onChange={handleRewardChange}
-                    placeholder="Enter Reward"
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" value="deadline">
-                  <Form.Control
-                    type="datetime-local"
-                    onChange={handleDeadChange}
-                    placeholder="Enter Deadline"
-                  />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
-            </Row> */}
-
             <br />
             <h2>create Submission : </h2>
             <Row>

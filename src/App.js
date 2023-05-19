@@ -5,6 +5,7 @@ import Bounties from "./Components/Main/Bounty";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 import CreateBountyComponent from "./Components/CreateBounty/CreateBounty";
+import AllBountiesComponent from "./Components/Main/AllBounties";
 
 const App = () => {
   console.log(process.env.REACT_APP_WALLET_ADD);
@@ -388,13 +389,21 @@ const App = () => {
             path="/"
             element={<Bounties contract={contract} account={currentAccount} />}
           />
-        </Routes>
-        <Routes>
           <Route
             exact
             path="/createBounty"
             element={
               <CreateBountyComponent
+                contract={contract}
+                account={currentAccount}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/allBounties"
+            element={
+              <AllBountiesComponent
                 contract={contract}
                 account={currentAccount}
               />
