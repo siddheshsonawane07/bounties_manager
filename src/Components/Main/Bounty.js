@@ -186,6 +186,53 @@ const Bounties = ({ contract, account }) => {
     );
   };
 
+  useEffect(() => {
+    async function getNumBounties() {
+      const numBounty = await contract.getNumBounties();
+      SetnoOfBOunties(parseInt(numBounty));
+      console.log("Available bounties : ", parseInt(numBounty));
+      const newCards = [];
+      for (let i = 0; i < parseInt(numBounty); i++) {
+        // Get the bounty detailss
+        const bounty = await contract.bountyList(i);
+        const val = 1000000000000000000;
+        console.log(
+          parseInt(bounty.reward) / val,
+          bounty.deadline * 1000,
+          bounty.description
+        );
+        console.log(cards);
+        const newCard = {
+          _reward: parseInt(bounty.reward) / val,
+          _deadLine: bounty.deadline * 1000,
+          _desc: bounty.description,
+          _owner: bounty.owner,
+        };
+        newCards.push(newCard);
+      }
+      setCards([...cards, ...newCards]);
+    }
+    getNumBounties();
+  }, [noOfBOunties]);
+
+  useEffect(() => {
+    const str = title + " / " + description + " / " + detail;
+    setDesc(str);
+  }, [title, detail, description]);
+
+  useEffect(() => {
+    async function getNumBounties() {
+      const numBounty = await contract.getNumBounties();
+      SetnoOfBOunties(parseInt(numBounty));
+    }
+    getNumBounties();
+  });
+
+  useEffect(() => {
+    const filtered = cards.filter((card) => card._owner === account);
+    setFilteredCards(filtered);
+  }, [cards]);
+
   return (
     <div>
       <div className="navbar">

@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { ethers } from "ethers";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CreateBountyComponent = ({ contract, account }) => {
   const [desc, setDesc] = useState("");
@@ -36,6 +36,11 @@ const CreateBountyComponent = ({ contract, account }) => {
     setReward(e.target.value);
   };
 
+  useEffect(() => {
+    const str = title + " / " + description + " / " + detail;
+    setDesc(str);
+  }, [title, detail, description]);
+
   //button function to create Bounty
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +55,7 @@ const CreateBountyComponent = ({ contract, account }) => {
     await createSubmit.wait();
     console.log(title, desc, detail, rewardWei, deadLine);
   };
+
   return (
     <>
       <Row>
