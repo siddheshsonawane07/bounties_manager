@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardComponent from "../Card/CardComponent";
-import "./Bounty.css";
+import NavbarComponent from "../../Navbar/Navbar";
 
 const AllBountiesComponent = ({ contract, account }) => {
   const [description, setDescription] = useState("");
@@ -83,6 +83,7 @@ const AllBountiesComponent = ({ contract, account }) => {
 
   return (
     <>
+      <NavbarComponent account={account} />
       <h1 className="car-title">💰All Bounties</h1>
       <Row xs={1} md={2} lg={3} className="g-3 cont-card">
         {cards.map((card) => {

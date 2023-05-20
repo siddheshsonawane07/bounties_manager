@@ -5,7 +5,7 @@ import Bounties from "./Components/Main/Bounty";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 import CreateBountyComponent from "./Components/CreateBounty/CreateBounty";
-import AllBountiesComponent from "./Components/Main/AllBounties";
+import AllBountiesComponent from "./Components/AllBounties/AllBounties";
 
 const App = () => {
   console.log(process.env.REACT_APP_WALLET_ADD);

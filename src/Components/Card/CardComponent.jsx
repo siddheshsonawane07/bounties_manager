@@ -1,7 +1,6 @@
 import { Card } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 
 const CardComponent = ({
   _reward,

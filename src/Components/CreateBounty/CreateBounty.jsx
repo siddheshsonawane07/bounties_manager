@@ -4,8 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { ethers } from "ethers";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
+import NavbarComponent from "../../Navbar/Navbar";
 
 const CreateBountyComponent = ({ contract, account }) => {
   const [desc, setDesc] = useState("");
@@ -58,6 +58,7 @@ const CreateBountyComponent = ({ contract, account }) => {
 
   return (
     <>
+      <NavbarComponent account={account} />
       <Row>
         <Form onSubmit={handleCreateSubmit}>
           <h2>Create Bounty </h2>

@@ -3,12 +3,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "../Submission/Submission.css";
-import { ethers } from "ethers";
-import { Card } from "react-bootstrap";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./Bounty.css";
 import CardComponent from "../Card/CardComponent";
+import NavbarComponent from "../../Navbar/Navbar";
 
 const SubmissionComponent = ({
   _title,
@@ -234,92 +231,56 @@ const Bounties = ({ contract, account }) => {
   }, [cards]);
 
   return (
-    <div>
-      <div className="navbar">
-        <a className="navbar-item" href="#">
-          Welcome to Bounties
-        </a>
-        <a className="navbar-item" href="/createBounty">
-          Create a Bounty
-        </a>
-        <a className="navbar-item" href="/allBounties">
-          All Bounties
-        </a>
-        <span>
-          <button
-            type="button"
-            class="btn btn-dark"
-            style={{ "margin-right": "5rem" }}
-          >
-            {`${account.substring(0, 4)}...${account.substring(38)}`}
-          </button>
-        </span>
-      </div>
+    <>
+      <NavbarComponent account={account} />
 
-      {homepage ? (
-        <>
-          <Col>
-            <h1 className="car-title">💰Your Bounties</h1>
-            <Row xs={1} md={2} lg={3} className="g-3 cont-card">
-              {filteredCards.map((card) => {
-                return (
-                  <Col className="card-column">
-                    <CardComponent
-                      key={card._desc}
-                      _reward={card._reward}
-                      _deadLine={card._deadLine}
-                      _desc={card._desc}
-                      _owner={card._owner}
-                      _title={card._desc}
-                    ></CardComponent>
-                  </Col>
-                );
-              })}
-              1
-            </Row>
-            <br />
-            <h2>create Submission : </h2>
-            <Row>
-              <Form onSubmit={handleCreateSubmission}>
-                <Form.Group className="mb-3" value="bountyindx">
-                  <Form.Control
-                    type="input"
-                    onChange={handleBountyIndex}
-                    placeholder="Enter bounty index"
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" value="submission">
-                  <Form.Control
-                    type="input"
-                    onChange={handleSubmission}
-                    placeholder="Enter github link"
-                  />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
-            </Row>
-            <br />
-            <p>Select bounty winner : </p>
-            <Row></Row>
-          </Col>
-        </>
-      ) : (
-        <SubmissionComponent
-          _title={title} // Pass title as prop
-          _description={description} // Pass description as prop
-          _reward={reward} // Pass reward as prop
-          _deadLine={deadLine} // Pass deadLine as prop
-          _index={BountyIndex}
-          _onSubmit={handleCreateSubmission}
-          _githubLink={githubLink}
-          _setGithubLink={setGithubLink}
-          _handleGithubLinkChange={handleGithubLinkChange}
-          _detail={detail}
-        />
-      )}
-    </div>
+      <Col>
+        <h1 className="car-title">💰Your Bounties</h1>
+        <Row xs={1} md={2} lg={3} className="g-3 cont-card">
+          {filteredCards.map((card) => {
+            return (
+              <Col className="card-column">
+                <CardComponent
+                  key={card._desc}
+                  _reward={card._reward}
+                  _deadLine={card._deadLine}
+                  _desc={card._desc}
+                  _owner={card._owner}
+                  _title={card._desc}
+                ></CardComponent>
+              </Col>
+            );
+          })}
+          1
+        </Row>
+        <br />
+        <h2>create Submission : </h2>
+        <Row>
+          <Form onSubmit={handleCreateSubmission}>
+            <Form.Group className="mb-3" value="bountyindx">
+              <Form.Control
+                type="input"
+                onChange={handleBountyIndex}
+                placeholder="Enter bounty index"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" value="submission">
+              <Form.Control
+                type="input"
+                onChange={handleSubmission}
+                placeholder="Enter github link"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Row>
+        <br />
+        <p>Select bounty winner : </p>
+        <Row></Row>
+      </Col>
+    </>
   );
 };
 
