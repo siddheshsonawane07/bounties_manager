@@ -390,7 +390,6 @@ const App = () => {
             element={<Bounties contract={contract} account={currentAccount} />}
           />
           <Route
-            exact
             path="/createBounty"
             element={
               <CreateBountyComponent
@@ -400,7 +399,6 @@ const App = () => {
             }
           />
           <Route
-            exact
             path="/allBounties"
             element={
               <AllBountiesComponent
@@ -409,6 +407,7 @@ const App = () => {
               />
             }
           />
+          {/* <Route path="/allBounties/:index" component={<CardDetails />} /> */}
         </Routes>
       </Router>
     </>

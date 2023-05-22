@@ -1,6 +1,7 @@
 import { Card } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const CardComponent = ({
   _reward,
@@ -9,7 +10,7 @@ const CardComponent = ({
   _title,
   _owner,
   handleCardClick,
-  _index,
+  _index
 }) => {
   const [description, setDescription] = useState("");
   const [detail, setDetail] = useState("");
@@ -30,7 +31,7 @@ const CardComponent = ({
         handleCardClick({ _reward, _deadLine, _desc, _owner, _index })
       }
     >
-      <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" />
+        <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" />
       <Card.Body>
         <Card.Title>{_title.split(" / ")[0]}</Card.Title>
         <Card.Text>{_desc.split(" / ")[1]}</Card.Text>

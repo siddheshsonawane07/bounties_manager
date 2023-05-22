@@ -1,0 +1,22 @@
+.submission-container {
+  /* background-color: rgb(138, 43, 226); */
+  margin-left: 10vh;
+  padding-left: 5vh;
+  margin-right: 60vh;
+  padding-right: 5vh;
+  margin-bottom: 2vh;
+  padding-bottom: 5vh;
+  margin-top: 5vh;
+  padding-top: 5vh;
+  border-radius: 20px;
+  border: 10px solid;
+
+  border-image: linear-gradient(45deg, #eb5d47, #a933b2, #a4f9ff);
+  border-image-slice: 1;
+}
+
+.pg-title {
+  margin-top: 10vh;
+  margin-left: 10vh;
+  margin-right: 10vh;
+}
