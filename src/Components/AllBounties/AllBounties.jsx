@@ -106,19 +106,19 @@ const AllBountiesComponent = ({ contract, account }) => {
     const _description = sentences[1].trim();
     const _details = sentences[2].trim();
     return (
-      <div>
-        <Col className="submission-container">
+      <div className="form-Container">
+        <Col className="submission-container containerTemplate">
           <Row>
-            <h3>Title</h3>
+            <h4>Title</h4>
             <p className="w-50 justify-items-start">{_title}</p>
           </Row>
           <Row>
-            <h3>Description</h3>
-            <p className="w-50 justify-items-start">{_description}</p>
+            <h4 className="content">Description</h4>
+            <p className="w-70 justify-items-start">{_description}</p>
           </Row>
           <Row>
-            <h3>Details</h3>
-            <p className="w-75 justify-items-start">{_details}</p>
+            <h4 className="content">Details</h4>
+            <p className="w-85 justify-items-start">{_details}</p>
           </Row>
           <Row>
             <Col>
@@ -139,8 +139,13 @@ const AllBountiesComponent = ({ contract, account }) => {
           <Row>
             <Col>Github Link: </Col>
             <Col lg={10} md={5} xs={4}>
-              <input className="w-100"></input>
+              <input className="w-100 input-Box"></input>
             </Col>
+            <br />
+            <Col>
+              <button className="btn-sub">Submit</button>
+            </Col>
+            
           </Row>
         </Col>
       </div>

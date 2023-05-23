@@ -32,7 +32,7 @@ const CardComponent = ({
         handleCardClick({ _reward, _deadLine, _desc, _owner, _index })
       }
     >
-        <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" />
+        <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" className="CardImg"/>
       <Card.Body>
         <Card.Title>{_title.split(" / ")[0]}</Card.Title>
         <Card.Text>{_desc.split(" / ")[1]}</Card.Text>
