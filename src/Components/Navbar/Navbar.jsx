@@ -1,4 +1,5 @@
 import React from "react";
+import "./navBar.css";
 
 const NavbarComponent = (account) => {
   let account_no = JSON.stringify(account);
