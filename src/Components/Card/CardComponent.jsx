@@ -2,6 +2,7 @@ import { Card } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./CardComponent.css";
 
 const CardComponent = ({
   _reward,
@@ -26,7 +27,7 @@ const CardComponent = ({
   const [filteredCards, setFilteredCards] = useState([]);
 
   return (
-    <Card
+    <Card className="CardEx"
       onClick={() =>
         handleCardClick({ _reward, _deadLine, _desc, _owner, _index })
       }

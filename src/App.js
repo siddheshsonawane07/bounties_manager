@@ -3,7 +3,7 @@ import Web3Modal from "web3modal";
 import { providers, Contract } from "ethers";
 import Bounties from "./Components/Main/Bounty";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "react-bootstrap";
+
 import CreateBountyComponent from "./Components/CreateBounty/CreateBounty";
 import AllBountiesComponent from "./Components/AllBounties/AllBounties";
 

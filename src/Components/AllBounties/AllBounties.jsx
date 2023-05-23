@@ -5,6 +5,7 @@ import CardComponent from "../Card/CardComponent";
 import "./Submission.css";
 import NavbarComponent from "../Navbar/Navbar";
 
+
 const AllBountiesComponent = ({ contract, account }) => {
   const [description, setDescription] = useState("");
   const [detail, setDetail] = useState("");
@@ -151,7 +152,7 @@ const AllBountiesComponent = ({ contract, account }) => {
       {homepage ? (
         <>
           <h1 className="car-title">💰Available Bounties</h1>
-          <Row xs={1} md={2} lg={3} className="g-3 cont-card">
+          <Row xs={5} md={4} lg={3} className="g-4 cont-card cardExternal">
             {cards.map((card) => {
               return (
                 <Col className="card-column">

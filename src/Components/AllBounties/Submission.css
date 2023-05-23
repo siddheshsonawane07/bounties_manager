@@ -11,7 +11,7 @@
   border-radius: 20px;
   border: 10px solid;
 
-  border-image: linear-gradient(45deg, #eb5d47, #a933b2, #a4f9ff);
+  /* border-image: linear-gradient(45deg, #eb5d47, #a933b2, #a4f9ff); */
   border-image-slice: 1;
 }
 

@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { ethers } from "ethers";
 import Row from "react-bootstrap/Row";
 import { useState, useEffect } from "react";
-import NavbarComponent from "../../Navbar/Navbar";
+import NavbarComponent from "../Navbar/Navbar";
 
 const CreateBountyComponent = ({ contract, account }) => {
   const [desc, setDesc] = useState("");

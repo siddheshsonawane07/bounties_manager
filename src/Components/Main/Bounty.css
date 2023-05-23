@@ -1,11 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Anuphan:wght@700&display=swap%27");
 
 .navbar {
-  background: linear-gradient(45deg, #eb5d47, #a933b2, #a4f9ff);
+  /* background: linear-gradient(45deg, #eb5d47, #a933b2, #a4f9ff); */
+  background: #A770EF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FDB99B, #CF8BF3, #A770EF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FDB99B, #CF8BF3, #A770EF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .navbar-item {
-  font-family: "Anuphan", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: white;
   font-size: larger;
   font-weight: bolder;

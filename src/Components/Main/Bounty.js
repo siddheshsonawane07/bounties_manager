@@ -5,78 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Bounty.css";
 import CardComponent from "../Card/CardComponent";
-import NavbarComponent from "../../Navbar/Navbar";
-
-// const SubmissionComponent = ({
-//   _title,
-//   _description,
-//   _reward,
-//   _deadLine,
-//   _onSubmit,
-//   _index,
-//   _githubLink,
-//   _setGithubLink,
-//   _handleGithubLinkChange,
-//   _detail,
-// }) => {
-//   const handleSubmit = () => {
-//     // Call the onSubmit function passed as prop with the githubLink value
-//     _onSubmit(_index, _githubLink);
-//   };
-
-//   return (
-//     <div>
-//       <h1 className="pg-title">{_title.split("/")[0]}</h1>
-//       <Col className="submission-container">
-//         <Row>
-//           <h3>Description</h3>
-//           <p className="w-50 justify-items-start">
-//             {_description.split("/")[1]}
-//           </p>
-//         </Row>
-//         <Row>
-//           <h3>Details</h3>
-//           <p className="w-75 justify-items-start">{_detail.split("/")[2]}</p>
-//         </Row>
-//         <Row>
-//           <Col>
-//             <h5>Reward : </h5>
-//           </Col>
-//           <Col lg={10} md={5} xs={4}>
-//             <p>{_reward}</p>
-//           </Col>
-//         </Row>
-//         <Row>
-//           <Col>
-//             <h5>Deadline : </h5>
-//           </Col>
-//           <Col lg={10} md={5} xs={4}>
-//             <p>{_deadLine}</p>
-//           </Col>
-//         </Row>
-//         <Row>
-//           <Col>Github Link: </Col>
-//           <Col lg={10} md={5} xs={4}>
-//             <input
-//               className="w-100"
-//               value={_githubLink}
-//               onChange={_handleGithubLinkChange}
-//             ></input>
-//           </Col>
-//         </Row>
-//       </Col>
-//       <Col className="container text-center">
-//         <button
-//           type="button"
-//           className="btn btn-dark"
-//           style={{ "margin-right": "60vh" }}
-//         >
-//           SUBMIT
-//         </button>
-//       </Col>
-//     </div>
-//   );
-// };
+import NavbarComponent from "../Navbar/Navbar";
 
 const Bounties = ({ contract, account }) => {
   const [title, setTitle] = useState("");
