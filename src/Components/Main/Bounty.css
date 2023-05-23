@@ -3,11 +3,10 @@
 .navbar {
   /* background: linear-gradient(45deg, #eb5d47, #a933b2, #a4f9ff); */
   background: rgba(0, 0, 0, 0.9);
-
 }
 
 .navbar-item {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
   font-size: larger;
   font-weight: bolder;
@@ -46,7 +45,7 @@ a:active {
   color: rgb(var(--text-color));
 }
 img.metamask-logo {
-    border-radius: 13px;
+  border-radius: 13px;
 }
 
 .metamask-logo {

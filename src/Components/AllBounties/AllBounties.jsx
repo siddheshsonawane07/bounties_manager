@@ -5,7 +5,6 @@ import CardComponent from "../Card/CardComponent";
 import "./Submission.css";
 import NavbarComponent from "../Navbar/Navbar";
 
-
 const AllBountiesComponent = ({ contract, account }) => {
   const [description, setDescription] = useState("");
   const [detail, setDetail] = useState("");
@@ -106,7 +105,7 @@ const AllBountiesComponent = ({ contract, account }) => {
     const _description = sentences[1].trim();
     const _details = sentences[2].trim();
     return (
-      <div className="form-Container">
+      <div className="form-Container-X">
         <Col className="submission-container containerTemplate">
           <Row>
             <h4>Title</h4>
@@ -145,7 +144,6 @@ const AllBountiesComponent = ({ contract, account }) => {
             <Col>
               <button className="btn-sub">Submit</button>
             </Col>
-            
           </Row>
         </Col>
       </div>

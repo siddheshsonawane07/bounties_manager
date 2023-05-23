@@ -11,7 +11,7 @@ const CardComponent = ({
   _title,
   _owner,
   handleCardClick,
-  _index
+  _index,
 }) => {
   const [description, setDescription] = useState("");
   const [detail, setDetail] = useState("");
@@ -27,12 +27,17 @@ const CardComponent = ({
   const [filteredCards, setFilteredCards] = useState([]);
 
   return (
-    <Card className="CardEx"
+    <Card
+      className="CardEx"
       onClick={() =>
         handleCardClick({ _reward, _deadLine, _desc, _owner, _index })
       }
     >
-        <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" className="CardImg"/>
+      <Card.Img
+        variant="top"
+        src="Blockchain-Tech-Web3-NFT-placeholder.jpg"
+        className="CardImg"
+      />
       <Card.Body>
         <Card.Title>{_title.split(" / ")[0]}</Card.Title>
         <Card.Text>{_desc.split(" / ")[1]}</Card.Text>

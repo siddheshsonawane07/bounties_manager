@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 import Row from "react-bootstrap/Row";
 import { useState, useEffect } from "react";
 import NavbarComponent from "../Navbar/Navbar";
-import "./CreateBounty.css"
+import "./CreateBounty.css";
 
 const CreateBountyComponent = ({ contract, account }) => {
   const [desc, setDesc] = useState("");
@@ -61,38 +61,43 @@ const CreateBountyComponent = ({ contract, account }) => {
     <>
       <NavbarComponent account={account} />
       <Row>
-        <Form onSubmit={handleCreateSubmit} className="form-Container">
+        <Form onSubmit={handleCreateSubmit} className="form-Container-Y">
           <h2>Create Bounty </h2>
           <Form.Group className="cont-form">
-            <Form.Control className="form-boxex"
+            <Form.Control
+              className="form-boxex"
               type="input"
               onChange={handlesetTitle}
               placeholder="Enter Title"
             />
           </Form.Group>
           <Form.Group className="cont-form">
-            <Form.Control className="form-boxex"
+            <Form.Control
+              className="form-boxex"
               type="input"
               onChange={handlesetDescription}
               placeholder="Enter Description"
             />
           </Form.Group>
           <Form.Group className="cont-form">
-            <Form.Control className="form-boxex"
+            <Form.Control
+              className="form-boxex"
               type="input"
               onChange={handlesetDetail}
               placeholder="Enter Details"
             />
           </Form.Group>
           <Form.Group value="reward" className="cont-form">
-            <Form.Control className="form-boxex"
+            <Form.Control
+              className="form-boxex"
               type="text"
               onChange={handleRewardChange}
               placeholder="Enter Reward"
             />
           </Form.Group>
           <Form.Group value="deadline" className="cont-form">
-            <Form.Control className="form-boxex"
+            <Form.Control
+              className="form-boxex"
               type="datetime-local"
               onChange={handleDeadChange}
               placeholder="Enter Deadline"
