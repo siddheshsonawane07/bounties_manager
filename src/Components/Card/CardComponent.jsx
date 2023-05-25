@@ -1,6 +1,8 @@
 import { Card } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./CardComponent.css";
 
 const CardComponent = ({
   _reward,
@@ -26,11 +28,16 @@ const CardComponent = ({
 
   return (
     <Card
+      className="CardEx"
       onClick={() =>
         handleCardClick({ _reward, _deadLine, _desc, _owner, _index })
       }
     >
-      <Card.Img variant="top" src="Blockchain-Tech-Web3-NFT-placeholder.jpg" />
+      <Card.Img
+        variant="top"
+        src="Blockchain-Tech-Web3-NFT-placeholder.jpg"
+        className="CardImg"
+      />
       <Card.Body>
         <Card.Title>{_title.split(" / ")[0]}</Card.Title>
         <Card.Text>{_desc.split(" / ")[1]}</Card.Text>

@@ -1,10 +1,11 @@
 import React from "react";
+import "./navBar.css";
 
 const NavbarComponent = (account) => {
   let account_no = JSON.stringify(account);
   console.log(account_no);
   return (
-    <div>
+    <div className="nav-container">
       <div className="navbar">
         <a className="navbar-item" href="/">
           Welcome to Bounties

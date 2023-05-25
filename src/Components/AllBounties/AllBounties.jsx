@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardComponent from "../Card/CardComponent";
-import NavbarComponent from "../../Navbar/Navbar";
+import "./Submission.css";
+import NavbarComponent from "../Navbar/Navbar";
 
 const AllBountiesComponent = ({ contract, account }) => {
   const [description, setDescription] = useState("");
@@ -20,20 +21,6 @@ const AllBountiesComponent = ({ contract, account }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
 
-  const handleCardClick = (card) => {
-    console.log("Card clicked!", card);
-
-    setDescription(card._desc);
-    setReward(card._reward);
-    setDeadLine(card._deadLine);
-    setBountyIndex(card._index);
-    setTitle(card._desc);
-    setDetail(card._desc);
-    setHomepage(false);
-
-    // ... Do something ...
-  };
-
   useEffect(() => {
     async function getNumBounties() {
       const numBounty = await contract.getNumBounties();
@@ -41,15 +28,15 @@ const AllBountiesComponent = ({ contract, account }) => {
       console.log("Available bounties : ", parseInt(numBounty));
       const newCards = [];
       for (let i = 0; i < parseInt(numBounty); i++) {
-        // Get the bounty detailss
+        // Get the bounty details
         const bounty = await contract.bountyList(i);
         const val = 1000000000000000000;
-        console.log(
-          parseInt(bounty.reward) / val,
-          bounty.deadline * 1000,
-          bounty.description
-        );
-        console.log(cards);
+        // console.log(
+        //   parseInt(bounty.reward) / val,
+        //   bounty.deadline * 1000,
+        //   bounty.description
+        // );
+        // console.log(cards);
         const newCard = {
           _reward: parseInt(bounty.reward) / val,
           _deadLine: bounty.deadline * 1000,
@@ -81,29 +68,127 @@ const AllBountiesComponent = ({ contract, account }) => {
     setFilteredCards(filtered);
   }, [cards]);
 
-  return (
-    <>
-      <NavbarComponent account={account} />
-      <h1 className="car-title">💰All Bounties</h1>
-      <Row xs={1} md={2} lg={3} className="g-3 cont-card">
-        {cards.map((card) => {
-          return (
-            <Col className="card-column">
-              <CardComponent
-                key={card._desc}
-                _reward={card._reward}
-                _deadLine={card._deadLine}
-                _desc={card._desc}
-                _owner={card._owner}
-                _title={card._desc}
-                _index={card._index}
-                handleCardClick={handleCardClick}
-              ></CardComponent>
+  const handleCardClick = (card) => {
+    setDescription(card._desc);
+    setReward(card._reward);
+    setDeadLine(card._deadLine);
+    setBountyIndex(card._index);
+    setTitle(card._desc);
+    setDetail(card._desc);
+    setHomepage(false);
+
+    // ... Do something ...
+  };
+
+  const handleCreateSubmission = async (e) => {
+    e.preventDefault();
+    const createSubmit = await contract.bountySubmission(
+      BountyIndex,
+      githubLink
+    );
+    await createSubmit.wait();
+    console.log("created submission : ", {
+      "bounty index ": BountyIndex,
+      "submission ": Submission,
+    });
+  };
+
+  const handleGithubLinkChange = (event) => {
+    setGithubLink(event.target.value);
+  };
+
+  const SubmissionComponent = () => {
+    const separator = "/";
+    const paragraph = desc;
+    const sentences = paragraph.split(separator);
+    const _title = sentences[0].trim();
+    const _description = sentences[1].trim();
+    const _details = sentences[2].trim();
+    return (
+      <div className="form-Container-X">
+        <Col className="submission-container containerTemplate">
+          <Row>
+            <h4>Title</h4>
+            <p className="w-50 justify-items-start">{_title}</p>
+          </Row>
+          <Row>
+            <h4 className="content">Description</h4>
+            <p className="w-70 justify-items-start">{_description}</p>
+          </Row>
+          <Row>
+            <h4 className="content">Details</h4>
+            <p className="w-85 justify-items-start">{_details}</p>
+          </Row>
+          <Row>
+            <Col>
+              <h5>Reward : </h5>
             </Col>
-          );
-        })}
-      </Row>
-    </>
+            <Col lg={10} md={5} xs={4}>
+              <p>{reward}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <h5>Deadline : </h5>
+            </Col>
+            <Col lg={10} md={5} xs={4}>
+              <p>{deadLine}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>Github Link: </Col>
+            <Col lg={10} md={5} xs={4}>
+              <input className="w-100 input-Box"></input>
+            </Col>
+            <br />
+            <Col>
+              <button className="btn-sub">Submit</button>
+            </Col>
+          </Row>
+        </Col>
+      </div>
+    );
+  };
+  return (
+    <div>
+      <NavbarComponent account={account} />
+      {homepage ? (
+        <>
+          <h1 className="car-title">💰Available Bounties</h1>
+          <Row xs={5} md={4} lg={3} className="g-4 cont-card cardExternal">
+            {cards.map((card) => {
+              return (
+                <Col className="card-column">
+                  <CardComponent
+                    key={card._desc}
+                    _reward={card._reward}
+                    _deadLine={card._deadLine}
+                    _desc={card._desc}
+                    _owner={card._owner}
+                    _title={card._desc}
+                    _index={card._index}
+                    handleCardClick={handleCardClick}
+                  ></CardComponent>
+                </Col>
+              );
+            })}
+          </Row>
+        </>
+      ) : (
+        <SubmissionComponent
+          _title={title} // Pass title as prop
+          _description={description} // Pass description as prop
+          _reward={reward} // Pass reward as prop
+          _deadLine={deadLine} // Pass deadLine as prop
+          _index={BountyIndex}
+          _onSubmit={handleCreateSubmission}
+          _githubLink={githubLink}
+          _setGithubLink={setGithubLink}
+          _handleGithubLinkChange={handleGithubLinkChange}
+          _detail={detail}
+        />
+      )}
+    </div>
   );
 };
 
