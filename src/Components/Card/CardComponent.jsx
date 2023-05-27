@@ -1,8 +1,8 @@
 import { Card } from "react-bootstrap";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import "./CardComponent.css";
+import Countdown from "../../Utils/Countdown";
 
 const CardComponent = ({
   _reward,
@@ -13,18 +13,7 @@ const CardComponent = ({
   handleCardClick,
   _index,
 }) => {
-  const [description, setDescription] = useState("");
-  const [detail, setDetail] = useState("");
-  const [homepage, setHomepage] = useState(true);
-  const [githubLink, setGithubLink] = useState("");
-  const [noOfBOunties, SetnoOfBOunties] = useState("");
-  const [reward, setReward] = useState("");
-  const [deadLine, setDeadLine] = useState("");
-  const [BountyIndex, setBountyIndex] = useState("");
-  const [Submission, setSubmission] = useState("");
-  const [SubmissionIndex, setSubmissionIndex] = useState("");
-  const [cards, setCards] = useState([]);
-  const [filteredCards, setFilteredCards] = useState([]);
+  const targetTimestamp = _deadLine;
 
   return (
     <Card
@@ -41,13 +30,10 @@ const CardComponent = ({
       <Card.Body>
         <Card.Title>{_title.split(" / ")[0]}</Card.Title>
         <Card.Text>{_desc.split(" / ")[1]}</Card.Text>
+        <Card.Text>Reward:{_reward}</Card.Text>
         <Card.Text>
-          <b>Reward:</b>
-          {_reward}
-        </Card.Text>
-        <Card.Text>
-          <b>Deadline:</b>
-          {_deadLine}
+          Deadline:{_deadLine}
+          {/* <Countdown targetTimestamp={targetTimestamp} /> */}
         </Card.Text>
       </Card.Body>
     </Card>
