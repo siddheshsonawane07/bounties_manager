@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+
 import "./Bounty.css";
 import CardComponent from "../Card/CardComponent";
 import NavbarComponent from "../Navbar/Navbar";
 import "./Submission.css";
+import Countdown from "../../Utils/Countdown";
+import DemoCarousel from "../Carousel";
 
 const Bounties = ({ contract, account }) => {
   const [title, setTitle] = useState("");
@@ -24,6 +25,7 @@ const Bounties = ({ contract, account }) => {
   const [SubmissionIndex, setSubmissionIndex] = useState("");
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
+  const targetTimestamp = deadLine;
 
   useEffect(() => {
     async function getNumBounties() {
@@ -128,41 +130,43 @@ const Bounties = ({ contract, account }) => {
     const _description = sentences[1].trim();
     const _details = sentences[2].trim();
     return (
-      <div className="form-Container">
+      <div className="form-Container-X">
         <Col className="submission-container containerTemplate">
           <Row>
             <h4>Title</h4>
             <p className="w-50 justify-items-start">{_title}</p>
           </Row>
+          <br />
           <Row>
             <h4 className="content">Description</h4>
             <p className="w-70 justify-items-start">{_description}</p>
           </Row>
+          <br />
           <Row>
             <h4 className="content">Details</h4>
             <p className="w-85 justify-items-start">{_details}</p>
           </Row>
+          <br />
           <Row>
             <Col>
-              <h5>Reward : </h5>
-            </Col>
-            <Col lg={10} md={5} xs={4}>
-              <p>{reward}</p>
+              <h5>Reward: {reward}</h5>
             </Col>
           </Row>
+          <br />
           <Row>
             <Col>
-              <h5>Deadline : </h5>
-            </Col>
-            <Col lg={10} md={5} xs={4}>
-              <p>{deadLine}</p>
+              <h5>Deadline: {deadLine}</h5>
             </Col>
           </Row>
+          <br />
           <Row>
-            <Col>Github Link: </Col>
-            <Col lg={10} md={5} xs={4}>
+            <Col>
+              <h5>Github Link: </h5>
+            </Col>
+            <Col lg={10} md={3} xs={4}>
               <input className="w-100 input-Box"></input>
             </Col>
+            <br />
           </Row>
         </Col>
       </div>
@@ -170,7 +174,7 @@ const Bounties = ({ contract, account }) => {
   };
   return (
     <div>
-      <NavbarComponent account={account} />
+      <br />
       {homepage ? (
         <>
           <h1 className="car-title">💰Your Bounties</h1>
@@ -206,6 +210,7 @@ const Bounties = ({ contract, account }) => {
           _handleGithubLinkChange={handleGithubLinkChange}
           _detail={detail}
         />
+        // <DemoCarousel />
       )}
 
       {/* <br />

@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import CardComponent from "../Card/CardComponent";
 import "./Submission.css";
 import NavbarComponent from "../Navbar/Navbar";
+import Countdown from "../../Utils/Countdown";
 
 const AllBountiesComponent = ({ contract, account }) => {
   const [description, setDescription] = useState("");
@@ -43,6 +44,7 @@ const AllBountiesComponent = ({ contract, account }) => {
           _desc: bounty.description,
           _owner: bounty.owner,
         };
+        console.log(deadLine);
         newCards.push(newCard);
       }
       setCards([...cards, ...newCards]);
@@ -111,33 +113,34 @@ const AllBountiesComponent = ({ contract, account }) => {
             <h4>Title</h4>
             <p className="w-50 justify-items-start">{_title}</p>
           </Row>
+          <br />
           <Row>
             <h4 className="content">Description</h4>
             <p className="w-70 justify-items-start">{_description}</p>
           </Row>
+          <br />
           <Row>
             <h4 className="content">Details</h4>
             <p className="w-85 justify-items-start">{_details}</p>
           </Row>
+          <br />
           <Row>
             <Col>
-              <h5>Reward : </h5>
-            </Col>
-            <Col lg={10} md={5} xs={4}>
-              <p>{reward}</p>
+              <h5>Reward: {reward}</h5>
             </Col>
           </Row>
+          <br />
           <Row>
             <Col>
-              <h5>Deadline : </h5>
-            </Col>
-            <Col lg={10} md={5} xs={4}>
-              <p>{deadLine}</p>
+              <h5>Deadline: {deadLine}</h5>
             </Col>
           </Row>
+          <br />
           <Row>
-            <Col>Github Link: </Col>
-            <Col lg={10} md={5} xs={4}>
+            <Col>
+              <h5>Github Link: </h5>
+            </Col>
+            <Col lg={10} md={3} xs={4}>
               <input className="w-100 input-Box"></input>
             </Col>
             <br />
@@ -151,10 +154,10 @@ const AllBountiesComponent = ({ contract, account }) => {
   };
   return (
     <div>
-      <NavbarComponent account={account} />
+      {/* <NavbarComponent account={account} /> */}
       {homepage ? (
         <>
-          <h1 className="car-title">💰Available Bounties</h1>
+          <h1 className="car-title">💰All Bounties</h1>
           <Row xs={5} md={4} lg={3} className="g-4 cont-card cardExternal">
             {cards.map((card) => {
               return (

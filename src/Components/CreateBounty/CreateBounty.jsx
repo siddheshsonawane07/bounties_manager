@@ -32,6 +32,7 @@ const CreateBountyComponent = ({ contract, account }) => {
     // Convert date and time to epoch time
     const epochTime = new Date(deadlineInput).getTime() / 1000;
     setDeadLine(epochTime);
+    console.log(epochTime);
   };
   const handleRewardChange = (e) => {
     setReward(e.target.value);
@@ -45,21 +46,35 @@ const CreateBountyComponent = ({ contract, account }) => {
   //button function to create Bounty
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
-    const rewardWei = ethers.utils.parseUnits(reward, "ether");
-    console.log(desc);
-    const createSubmit = await contract.createBounty(
-      desc,
-      rewardWei,
-      deadLine,
-      { value: rewardWei }
-    );
-    await createSubmit.wait();
-    console.log(title, desc, detail, rewardWei, deadLine);
+
+    if (
+      title.trim() == "" ||
+      description.trim() == "" ||
+      reward.trim() == "" ||
+      detail.trim() == ""
+    ) {
+      alert("All fields are required");
+    } else {
+      const rewardWei = ethers.utils.parseUnits(reward, "ether");
+      console.log(deadLine);
+      const createSubmit = await contract.createBounty(
+        desc,
+        rewardWei,
+        deadLine,
+        { value: rewardWei }
+      );
+      await createSubmit.wait();
+      alert("Bounty Created");
+      setTitle("");
+      setDeadLine("");
+      setDescription("");
+      setReward("");
+    }
   };
 
   return (
     <>
-      <NavbarComponent account={account} />
+      {/* <NavbarComponent account={account} /> */}
       <Row>
         <Form onSubmit={handleCreateSubmit} className="form-Container-Y">
           <h2>Create Bounty </h2>
@@ -111,5 +126,4 @@ const CreateBountyComponent = ({ contract, account }) => {
     </>
   );
 };
-
 export default CreateBountyComponent;
