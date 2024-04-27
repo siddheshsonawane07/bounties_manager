@@ -8,13 +8,3 @@ Project Description: Bounty Aggregator is a web-based platform that aims to simp
 Bounty Aggregator collects and displays information about various bounty programs from different sources. This includes the task description, reward, requirements, and other relevant information. Users can easily browse through the available bounties and filter them based on their interests and skills.
 
 Tech Stack used: React.js, Solidity, Ether.js, Hardhat, web3modal.
-
-Deployed using GCP AMD instance: http://35.223.252.133/
-
-Steps to create a bounty:
-1. Visit http://35.223.252.133/.
-2. Sign in with metamask wallet extension. (make sure you have metamask wallet)
-3. Enter bounty title, details & deadline.
-4. Click submit and a metamsk wallet popup will appear.
-5. Confirm the metamask notifcation for succesfull transaction.
-5. Your bounty will be listed alongside other bounties.
