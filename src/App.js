@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import CreateBountyComponent from "./Components/CreateBounty/CreateBounty";
 import AllBountiesComponent from "./Components/AllBounties/AllBounties";
+import NavbarComponent from "./Components/Navbar/Navbar";
 
 const App = () => {
   console.log(process.env.REACT_APP_WALLET_ADD);
@@ -382,7 +383,7 @@ const App = () => {
   return (
     <>
       {/* <NavComponent account={currentAccount} /> */}
-      <Router>
+      {/* <Router>
         <Routes>
           <Route
             exact
@@ -408,8 +409,12 @@ const App = () => {
             }
           />
           {/* <Route path="/allBounties/:index" component={<CardDetails />} /> */}
-        </Routes>
-      </Router>
+      {/* </Routes>
+      </Router> */}{" "}
+      {/* <NavbarComponent account={currentAccount} /> */}
+      <Bounties contract={contract} account={currentAccount} />
+      <AllBountiesComponent contract={contract} account={currentAccount} />
+      <CreateBountyComponent contract={contract} account={currentAccount} />
     </>
   );
 };

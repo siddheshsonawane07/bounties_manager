@@ -1,5 +1,8 @@
 import React from "react";
 import "./navBar.css";
+import Bounties from "../Main/Bounty";
+import AllBountiesComponent from "../AllBounties/AllBounties";
+import CreateBountyComponent from "../CreateBounty/CreateBounty";
 
 const NavbarComponent = (account) => {
   let account_no = JSON.stringify(account);
@@ -7,13 +10,13 @@ const NavbarComponent = (account) => {
   return (
     <div className="nav-container">
       <div className="navbar">
-        <a className="navbar-item" href="/">
+        <a className="navbar-item" href={Bounties}>
           Welcome to Bounties
         </a>
-        <a className="navbar-item" href="/allBounties">
+        <a className="navbar-item" href={AllBountiesComponent}>
           All Bounties
         </a>
-        <a className="navbar-item" href="/createBounty">
+        <a className="navbar-item" href={CreateBountyComponent}>
           Create a Bounty
         </a>
         <span>

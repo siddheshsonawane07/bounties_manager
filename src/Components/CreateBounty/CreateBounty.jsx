@@ -74,7 +74,7 @@ const CreateBountyComponent = ({ contract, account }) => {
 
   return (
     <>
-      <NavbarComponent account={account} />
+      {/* <NavbarComponent account={account} /> */}
       <Row>
         <Form onSubmit={handleCreateSubmit} className="form-Container-Y">
           <h2>Create Bounty </h2>

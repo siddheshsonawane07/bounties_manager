@@ -154,10 +154,10 @@ const AllBountiesComponent = ({ contract, account }) => {
   };
   return (
     <div>
-      <NavbarComponent account={account} />
+      {/* <NavbarComponent account={account} /> */}
       {homepage ? (
         <>
-          <h1 className="car-title">💰Available Bounties</h1>
+          <h1 className="car-title">💰All Bounties</h1>
           <Row xs={5} md={4} lg={3} className="g-4 cont-card cardExternal">
             {cards.map((card) => {
               return (

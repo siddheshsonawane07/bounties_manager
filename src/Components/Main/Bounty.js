@@ -174,7 +174,7 @@ const Bounties = ({ contract, account }) => {
   };
   return (
     <div>
-      <NavbarComponent account={account} />
+      <br />
       {homepage ? (
         <>
           <h1 className="car-title">💰Your Bounties</h1>
